@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 
 def call(def pkg){
-    pkg.artixTools.buildCmd += " -d ${pkg.artixTools.repoAddName}"
+    pkg.artixConfig.tools.buildCmd += " -d ${pkg.artixConfig.tools.repoAddName}"
     Boolean isLibBump = false
     if ( pkg.jobInfo.name == 'goblins' ) {
         isLibBump = input message: "Is this the first of a major staging rebuild?",
@@ -9,11 +9,11 @@ def call(def pkg){
     }
     echo "isLibBump: " + isLibBump
     if ( isLibBump ) {
-        pkg.artixTools.buildCmd += " -m"
+        pkg.artixConfig.tools.buildCmd += " -m"
     }
-    dir(pkg.artixTools.repoPathGit) {
+    dir(pkg.artixConfig.tools.repoPathGit) {
         catchError(message: "FAILURE", buildResult: 'FAILURE', stageResult: 'FAILURE') {
-            sh "${pkg.artixTools.buildCmd}"
+            echo "${pkg.artixConfig.tools.buildCmd}"
         }
     }
 }

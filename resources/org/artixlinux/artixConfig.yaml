@@ -1,0 +1,67 @@
+---
+
+repos:
+    goblins:
+        name: 'goblins'
+        git: 'staging'
+        arch: ['staging-x86_64', 'staging-any']
+    gremlins:
+        name: 'gremlins'
+        git: 'testing'
+        arch: ['testing-x86_64', 'testing-any']
+    system:
+        name: 'system'
+        git: 'core'
+        arch: ['core-x86_64', 'core-any']
+    world:
+        name: 'world'
+        git: 'extra'
+        arch: ['extra-x86_64', 'extra-any']
+    galaxy-goblins:
+        name: 'galaxy-goblins'
+        git: 'community-staging'
+        arch: ['community-staging-x86_64', 'community-staging-any']
+    galaxy-gremlins:
+        name: 'galaxy-gremlins'
+        git: 'community-testing'
+        arch: ['community-testing-x86_64', 'community-testing-any']
+    galaxy:
+        name: 'galaxy'
+        git: 'community'
+        arch: ['community-x86_64', 'community-any']
+    lib32-goblins:
+        name: 'lib32-goblins'
+        git: 'multilib-staging'
+        arch: ['multilib-staging-x86_64']
+    lib32-gremlins:
+        name: 'lib32-gremlins'
+        git: 'multilib-testing'
+        arch: ['multilib-testing-x86_64']
+    lib32:
+        name: 'lib32'
+        git: 'multilib'
+        arch: ['multilib-x86_64']
+    kde-wobble:
+        name: 'kde-wobble'
+        git: 'kde-unstable'
+        arch: ['kde-unstable-x86_64', 'kde-unstable-any']
+    gnome-wobble:
+        name: 'gnome-wobble'
+        git: 'gnome-unstable'
+        arch: ['gnome-unstable-x86_64', 'gnome-unstable-any']
+
+tools:
+    buildCmd: 'buildpkg -C'
+    repoAddCmd: 'deploypkg -a -l'
+    repoRemoveCmd: 'deploypkg -r -l'
+    signCmd: 'signpkg'
+    yamlCmd: 'pkg2yaml -d'
+    repoPathGit: 'trunk'
+    repoAddName: 'default'
+    repoRemoveName: 'default'
+    repoName: 'trunk'
+
+actions:
+    isAdd: false
+    isRemove: false
+    isBuild: false

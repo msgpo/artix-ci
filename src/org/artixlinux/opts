@@ -1,0 +1,14 @@
+gboblins <-> gremlins
+gremlins <-> system
+gremlins <-> world
+gboblins <-> system
+gboblins <-> world
+galaxy-goblins <-> galaxy-gremlins
+galaxy-gremlins <-> galaxy
+galaxy-goblins <-> galaxy
+kde-wobble <-> gboblins
+gnome-wobble <-> gboblins
+
+lib32-goblins <-> lib32-gremlins
+lib32-gremlins <-> lib
+lib32-goblins <-> lib32

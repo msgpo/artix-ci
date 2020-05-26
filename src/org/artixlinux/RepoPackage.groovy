@@ -35,136 +35,34 @@ class RepoPackage implements Serializable {
         jobInfo
     }
 
-    private Map mapRepo(String src) {
-        Map repoMap = [:]
-        if ( src == artixConfig.repos.goblins.arch[0] || src == artixConfig.repos.goblins.arch[1] ) {
-            repoMap << [src: artixConfig.repos.goblins.name]
-        } else if ( src == artixConfig.repos.gremlins.arch[0] || src == artixConfig.repos.gremlins.arch[1] ) {
-            repoMap << [src: artixConfig.repos.gremlins.name]
-        } else if ( src == artixConfig.repos.system.arch[0] || src == artixConfig.repos.system.arch[1] ) {
-            repoMap << [src: artixConfig.repos.system.name]
-        } else if ( src == artixConfig.repos.world.arch[0] || src == artixConfig.repos.world.arch[1] ) {
-            repoMap << [src: artixConfig.repos.world.name]
-        } else if ( src == artixConfig.repos.galaxyGoblins.arch[0] || src == artixConfig.repos.galaxyGoblins.arch[1] ) {
-            repoMap << [src: artixConfig.repos.galaxyGoblins.name]
-        } else if ( src == artixConfig.repos.galaxyGremlins.arch[0] || src == artixConfig.repos.galaxyGremlins.arch[1] ) {
-            repoMap << [src: artixConfig.repos.galaxyGremlins.name]
-        } else if ( src == artixConfig.repos.galaxy.arch[0] || src == artixConfig.repos.galaxy.arch[1] ) {
-            repoMap << [src: artixConfig.repos.galaxy.name]
-        } else if ( src == artixConfig.repos.lib32Goblins.arch[0] ) {
-            repoMap << [src: artixConfig.repos.lib32Goblins.name]
-        } else if ( src == artixConfig.repos.lib32Gremlins.arch[0] ) {
-            repoMap << [src: artixConfig.repos.lib32Gremlins.name]
-        } else if ( src == artixConfig.repos.lib32.arch[0] ) {
-            repoMap << [src: artixConfig.repos.lib32.name]
-        } else if ( src == artixConfig.repos.kdeWobble.arch[0] || src == artixConfig.repos.kdeWobble.arch[1] ) {
-            repoMap << [src: artixConfig.repos.kdeWobble.name]
-        } else if ( src == artixConfig.repos.gnomeWobble.arch[0] || src == artixConfig.repos.gnomeWobble.arch[1] ) {
-            repoMap << [src: artixConfig.repos.gnomeWobble.name]
+    private String mapRepo(String name) {
+        String repo = ''
+        if ( name == artixConfig.repos.goblins.arch[0] || name == artixConfig.repos.goblins.arch[1] ) {
+            repo = artixConfig.repos.goblins.name
+        } else if ( name == artixConfig.repos.gremlins.arch[0] || name == artixConfig.repos.gremlins.arch[1] ) {
+            repo = artixConfig.repos.gremlins.name
+        } else if ( name == artixConfig.repos.system.arch[0] || name == artixConfig.repos.system.arch[1] ) {
+            repo = artixConfig.repos.system.name
+        } else if ( name == artixConfig.repos.world.arch[0] || name == artixConfig.repos.world.arch[1] ) {
+            repo = artixConfig.repos.world.name
+        } else if ( name == artixConfig.repos.galaxyGoblins.arch[0] || name == artixConfig.repos.galaxyGoblins.arch[1] ) {
+            repo = artixConfig.repos.galaxyGoblins.name
+        } else if ( name == artixConfig.repos.galaxyGremlins.arch[0] || name == artixConfig.repos.galaxyGremlins.arch[1] ) {
+            repo = artixConfig.repos.galaxyGremlins.name
+        } else if ( name == artixConfig.repos.galaxy.arch[0] || name == artixConfig.repos.galaxy.arch[1] ) {
+            repo = artixConfig.repos.galaxy.name
+        } else if ( name == artixConfig.repos.lib32Goblins.arch[0] ) {
+            repo = artixConfig.repos.lib32Goblins.name
+        } else if ( name == artixConfig.repos.lib32Gremlins.arch[0] ) {
+            repo = artixConfig.repos.lib32Gremlins.name
+        } else if ( name == artixConfig.repos.lib32.arch[0] ) {
+            repo = artixConfig.repos.lib32.name
+        } else if ( name == artixConfig.repos.kdeWobble.arch[0] || name == artixConfig.repos.kdeWobble.arch[1] ) {
+            repo = artixConfig.repos.kdeWobble.name
+        } else if ( name == artixConfig.repos.gnomeWobble.arch[0] || name == artixConfig.repos.gnomeWobble.arch[1] ) {
+            repo = artixConfig.repos.gnomeWobble.name
         }
-        return repoMap
-    }
-
-    private Map mapRepos(String src, String dest) {
-        Map  repoMap = [:]
-        if ( src == artixConfig.repos.gremlins.arch[0] && dest == artixConfig.repos.goblins.arch[0] ) {
-            repoMap << [src: artixConfig.repos.goblins.name, dest: artixConfig.repos.gremlins.name]
-        } else if ( src == artixConfig.repos.gremlins.arch[1] && dest == artixConfig.repos.goblins.arch[1] ) {
-            repoMap << [src: artixConfig.repos.goblins.name, dest: artixConfig.repos.gremlins.name]
-        } else if ( src.contains(artixConfig.repos.galaxyGremlins.git) && dest.contains(artixConfig.repos.galaxyGoblins.git) ) {
-            repoMap << [src: artixConfig.repos.galaxyGoblins.name, dest: artixConfig.repos.galaxyGremlins.name]
-        } else if ( src.contains(artixConfig.repos.lib32Gremlins.git) && dest.contains(artixConfig.repos.lib32Goblins.git) ) {
-            repoMap << [src: artixConfig.repos.lib32Goblins.name, dest: artixConfig.repos.lib32Gremlins.name]
-        } else if ( src.contains(artixConfig.repos.system.git) && dest == artixConfig.repos.gremlins.arch[0] ) {
-            repoMap << [src: artixConfig.repos.gremlins.name, dest: artixConfig.repos.system.name]
-        } else if ( src.contains(artixConfig.repos.system.git) && dest == artixConfig.repos.gremlins.arch[1] ) {
-            repoMap << [src: artixConfig.repos.gremlins.name, dest: artixConfig.repos.system.name]
-        } else if ( src.contains(artixConfig.repos.world.git) && dest == artixConfig.repos.gremlins.arch[0] ) {
-            repoMap << [src: artixConfig.repos.gremlins.name, dest: artixConfig.repos.world.name]
-        } else if ( src.contains(artixConfig.repos.world.git) && dest == artixConfig.repos.gremlins.arch[1] ) {
-            repoMap << [src: artixConfig.repos.gremlins.name, dest: artixConfig.repos.world.name]
-        } else if ( src == artixConfig.repos.galaxy.arch[0] && dest.contains(artixConfig.repos.galaxyGremlins.git) ) {
-            repoMap << [src: artixConfig.repos.galaxyGremlins.name, dest: artixConfig.repos.galaxy.name]
-        } else if ( src == artixConfig.repos.galaxy.arch[1] && dest.contains(artixConfig.repos.galaxyGremlins.git) ) {
-            repoMap << [src: artixConfig.repos.galaxyGremlins.name, dest: artixConfig.repos.galaxy.name]
-        } else if ( src.contains(artixConfig.repos.lib32.arch[0]) && dest.contains(artixConfig.repos.lib32Gremlins.git) ) {
-            repoMap << [src: artixConfig.repos.lib32Gremlins.name, dest: artixConfig.repos.lib32.name]
-        } else if ( src == artixConfig.repos.goblins.arch[0] && dest == artixConfig.repos.gremlins.arch[0] ) {
-            repoMap << [src: artixConfig.repos.gremlins.name, dest: artixConfig.repos.goblins.name]
-        } else if ( src == artixConfig.repos.goblins.arch[1] && dest == artixConfig.repos.gremlins.arch[1] ) {
-            repoMap << [src: artixConfig.repos.gremlins.name, dest: artixConfig.repos.goblins.name]
-        } else if ( src.contains(artixConfig.repos.galaxyGoblins.git) && dest.contains(artixConfig.repos.galaxyGremlins.git) ) {
-            repoMap << [src: artixConfig.repos.galaxyGremlins.name, dest: artixConfig.repos.galaxyGoblins.name]
-        } else if ( src.contains(artixConfig.repos.lib32Goblins.git) && dest.contains(artixConfig.repos.lib32Gremlins.git) ) {
-            repoMap << [src: artixConfig.repos.lib32Gremlins.name, dest: artixConfig.repos.lib32Goblins.name]
-        } else if ( src == artixConfig.repos.gremlins.arch[0] && dest.contains(artixConfig.repos.system.git) ) {
-            repoMap << [src: artixConfig.repos.system.name, dest: artixConfig.repos.gremlins.name]
-        } else if ( src == artixConfig.repos.gremlins.arch[1] && dest.contains(artixConfig.repos.system.git) ) {
-            repoMap << [src: artixConfig.repos.system.name, dest: artixConfig.repos.gremlins.name]
-        } else if ( src == artixConfig.repos.gremlins.arch[0] && dest.contains(artixConfig.repos.world.git) ) {
-            repoMap << [src: artixConfig.repos.world.name, dest: artixConfig.repos.gremlins.name]
-        } else if ( src == artixConfig.repos.gremlins.arch[1] && dest.contains(artixConfig.repos.world.git) ) {
-            repoMap << [src: artixConfig.repos.world.name, dest: artixConfig.repos.gremlins.name]
-        } else if ( src.contains(artixConfig.repos.galaxyGremlins.git) && dest == artixConfig.repos.galaxy.arch[0] ) {
-            repoMap << [src: artixConfig.repos.galaxy.name, dest: artixConfig.repos.galaxyGremlins.name]
-        } else if ( src.contains(artixConfig.repos.galaxyGremlins.git) && dest == artixConfig.repos.galaxy.arch[1] ) {
-            repoMap << [src: artixConfig.repos.galaxy.name, dest: artixConfig.repos.galaxyGremlins.name]
-        } else if ( src.contains(artixConfig.repos.lib32Gremlins.git) && dest.contains(artixConfig.repos.lib32.arch[0]) ) {
-            repoMap << [src: artixConfig.repos.lib32.name, dest: artixConfig.repos.lib32Gremlins.name]
-        } else if ( src.contains(artixConfig.repos.world.git) && dest.contains(artixConfig.repos.system.git) ) {
-            repoMap << [src: artixConfig.repos.system.name, dest: artixConfig.repos.world.name]
-        } else if ( src.contains(artixConfig.repos.system.git) && dest.contains(artixConfig.repos.world.git) ) {
-            repoMap << [src: artixConfig.repos.world.name, dest: artixConfig.repos.system.name]
-        } else if ( src == artixConfig.repos.galaxy.arch[0] && dest.contains(artixConfig.repos.system.git) ) {
-            repoMap << [src: artixConfig.repos.system.name, dest: artixConfig.repos.galaxy.name]
-        } else if ( src == artixConfig.repos.galaxy.arch[1] && dest.contains(artixConfig.repos.system.git) ) {
-            repoMap << [src: artixConfig.repos.system.name, dest: artixConfig.repos.galaxy.name]
-        } else if ( src.contains(artixConfig.repos.system.git) && dest == artixConfig.repos.galaxy.arch[0] ) {
-            repoMap << [src: artixConfig.repos.galaxy.name, dest: artixConfig.repos.system.name]
-        } else if ( src.contains(artixConfig.repos.system.git) && dest == artixConfig.repos.galaxy.arch[1] ) {
-            repoMap << [src: artixConfig.repos.galaxy.name, dest: artixConfig.repos.system.name]
-        } else if ( src == artixConfig.repos.galaxy.arch[0] && dest.contains(artixConfig.repos.world.git) ) {
-            repoMap << [src: artixConfig.repos.world.name, dest: artixConfig.repos.galaxy.name]
-        } else if ( src == artixConfig.repos.galaxy.arch[1] && dest.contains(artixConfig.repos.world.git) ) {
-            repoMap << [src: artixConfig.repos.world.name, dest: artixConfig.repos.galaxy.name]
-        } else if ( src.contains(artixConfig.repos.world.git) && dest == artixConfig.repos.galaxy.arch[0] ) {
-            repoMap << [src: artixConfig.repos.galaxy.name, dest: artixConfig.repos.world.name]
-        } else if ( src.contains(artixConfig.repos.world.git) && dest == artixConfig.repos.galaxy.arch[1] ) {
-            repoMap << [src: artixConfig.repos.galaxy.name, dest: artixConfig.repos.world.name]
-        } else if ( src.contains(artixConfig.repos.galaxyGoblins.git) && dest == artixConfig.repos.goblins.arch[0] ) {
-            repoMap << [src: artixConfig.repos.goblins.name, dest: artixConfig.repos.galaxyGoblins.name]
-        } else if ( src.contains(artixConfig.repos.galaxyGoblins.git) && dest == artixConfig.repos.goblins.arch[1] ) {
-            repoMap << [src: artixConfig.repos.goblins.name, dest: artixConfig.repos.galaxyGoblins.name]
-        } else if ( src  == artixConfig.repos.goblins.arch[0] && dest.contains(artixConfig.repos.galaxyGoblins.git) ) {
-            repoMap << [src: artixConfig.repos.galaxyGoblins.name, dest: artixConfig.repos.goblins.name]
-        } else if ( src  == artixConfig.repos.goblins.arch[1] && dest.contains(artixConfig.repos.galaxyGoblins.git) ) {
-            repoMap << [src: artixConfig.repos.galaxyGoblins.name, dest: artixConfig.repos.goblins.name]
-        } else if ( src.contains(artixConfig.repos.galaxyGremlins.git) && dest == artixConfig.repos.gremlins.arch[0] ) {
-            repoMap << [src: artixConfig.repos.gremlins.name, dest: artixConfig.repos.galaxyGremlins.name]
-        } else if ( src.contains(artixConfig.repos.galaxyGremlins.git) && dest == artixConfig.repos.gremlins.arch[1] ) {
-            repoMap << [src: artixConfig.repos.gremlins.name, dest: artixConfig.repos.galaxyGremlins.name]
-        } else if ( src  == artixConfig.repos.gremlins.arch[0] && dest.contains(artixConfig.repos.galaxyGremlins.git) ) {
-            repoMap << [src: artixConfig.repos.galaxyGremlins.name, dest: artixConfig.repos.gremlins.name]
-        } else if ( src  == artixConfig.repos.gremlins.arch[1] && dest.contains(artixConfig.repos.galaxyGremlins.git) ) {
-            repoMap << [src: artixConfig.repos.galaxyGremlins.name, dest: artixConfig.repos.gremlins.name]
-        } else if ( src  == artixConfig.repos.goblins.arch[0] && dest == artixConfig.repos.kdeWobble.arch[0] ) {
-            repoMap << [src: artixConfig.repos.kdeWobble.name, dest: artixConfig.repos.goblins.name]
-        } else if ( src  == artixConfig.repos.goblins.arch[1] && dest == artixConfig.repos.kdeWobble.arch[1] ) {
-            repoMap << [src: artixConfig.repos.kdeWobble.name, dest: artixConfig.repos.goblins.name]
-        } else if ( src  == artixConfig.repos.goblins.arch[0] && dest == artixConfig.repos.gnomeWobble.arch[0] ) {
-            repoMap << [src: artixConfig.repos.gnomeWobble.name, dest: artixConfig.repos.goblins.name]
-        } else if ( src  == artixConfig.repos.goblins.arch[1] && dest == artixConfig.repos.gnomeWobble.arch[1] ) {
-            repoMap << [src: artixConfig.repos.gnomeWobble.name, dest: artixConfig.repos.goblins.name]
-        } else if ( src  == artixConfig.repos.kdeWobble.arch[0] && dest == artixConfig.repos.goblins.arch[0] ) {
-            repoMap << [src: artixConfig.repos.goblins.name, dest: artixConfig.repos.kdeWobble.name]
-        } else if ( src  == artixConfig.repos.kdeWobble.arch[1] && dest == artixConfig.repos.goblins.arch[1] ) {
-            repoMap << [src: artixConfig.repos.goblins.name, dest: artixConfig.repos.kdeWobble.name]
-        } else if ( src  == artixConfig.repos.gnomeWobble.arch[0] && dest == artixConfig.repos.goblins.arch[0] ) {
-            repoMap << [src: artixConfig.repos.goblins.name, dest: artixConfig.repos.gnomeWobble.name]
-        } else if ( src  == artixConfig.repos.gnomeWobble.arch[1] && dest == artixConfig.repos.goblins.arch[1] ) {
-            repoMap << [src: artixConfig.repos.goblins.name, dest: artixConfig.repos.gnomeWobble.name]
-        }
-        return repoMap
+        return repo
     }
 
     private void repoPkgOp() {
@@ -173,11 +71,11 @@ class RepoPackage implements Serializable {
 
         if ( repoListGit[0].status == 'A' || repoListGit[0].status == 'M' ) {
             artixConfig.actions.isBuild = true
-            artixConfig.tools.repoAddName = mapRepo(srcRepo).src
+            artixConfig.tools.repoAddName = mapRepo(srcRepo)
             artixConfig.tools.repoName = artixConfig.tools.repoAddName
         } else if ( repoListGit[0].status == 'D' ) {
             artixConfig.actions.isRemove = true
-            artixConfig.tools.repoRemoveName = mapRepo(srcRepo).src
+            artixConfig.tools.repoRemoveName = mapRepo(srcRepo)
             artixConfig.tools.repoName = artixConfig.tools.repoRemoveName
         }
 
@@ -194,29 +92,29 @@ class RepoPackage implements Serializable {
 
         if ( repoListGit[0].status == 'M' ) {
             artixConfig.actions.isAdd = true
-            artixConfig.tools.repoAddName = mapRepo(srcRepo).src
+            artixConfig.tools.repoAddName = mapRepo(srcRepo)
             artixConfig.tools.repoPathGit = repoListGit[1].path
         } else if ( repoListGit[1].status == 'M' ) {
             artixConfig.actions.isAdd = true
-            artixConfig.tools.repoAddName = mapRepo(destRepo).src
+            artixConfig.tools.repoAddName = mapRepo(destRepo)
             artixConfig.tools.repoPathGit = repoListGit[0].path
         }
 
         if ( repoListGit[0].status == 'D' ) {
             artixConfig.actions.isRemove = true
-            artixConfig.tools.repoRemoveName = mapRepo(srcRepo).src
+            artixConfig.tools.repoRemoveName = mapRepo(srcRepo)
             artixConfig.tools.repoPathGit = repoListGit[1].path
         } else if ( repoListGit[1].status == 'D' ) {
             artixConfig.actions.isRemove = true
-            artixConfig.tools.repoRemoveName = mapRepo(destRepo).src
+            artixConfig.tools.repoRemoveName = mapRepo(destRepo)
             artixConfig.tools.repoPathGit = repoListGit[0].path
         }
 
         if ( repoListGit[0].status.contains('R') && repoListGit[1].status.contains('R') )  {
             artixConfig.actions.isAdd = true
             artixConfig.actions.isRemove = true
-            artixConfig.tools.repoAddName = mapRepos(srcRepo, destRepo).src
-            artixConfig.tools.repoRemoveName = mapRepos(srcRepo, destRepo).dest
+            artixConfig.tools.repoAddName = mapRepo(destRepo)
+            artixConfig.tools.repoRemoveName = mapRepo(srcRepo)
             artixConfig.tools.repoPathGit = repoListGit[1].path
         }
 

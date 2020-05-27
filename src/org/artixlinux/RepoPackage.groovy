@@ -30,42 +30,17 @@ class RepoPackage implements Serializable {
     }
 
     private String mapRepo(String name) {
-//         String repo = ''
-//         if ( name == artixConfig.repos.goblins.arch[0] || name == artixConfig.repos.goblins.arch[1] ) {
-//             repo = artixConfig.repos.goblins.name
-//         } else if ( name == artixConfig.repos.gremlins.arch[0] || name == artixConfig.repos.gremlins.arch[1] ) {
-//             repo = artixConfig.repos.gremlins.name
-//         } else if ( name == artixConfig.repos.system.arch[0] || name == artixConfig.repos.system.arch[1] ) {
-//             repo = artixConfig.repos.system.name
-//         } else if ( name == artixConfig.repos.world.arch[0] || name == artixConfig.repos.world.arch[1] ) {
-//             repo = artixConfig.repos.world.name
-//         } else if ( name == artixConfig.repos.galaxyGoblins.arch[0] || name == artixConfig.repos.galaxyGoblins.arch[1] ) {
-//             repo = artixConfig.repos.galaxyGoblins.name
-//         } else if ( name == artixConfig.repos.galaxyGremlins.arch[0] || name == artixConfig.repos.galaxyGremlins.arch[1] ) {
-//             repo = artixConfig.repos.galaxyGremlins.name
-//         } else if ( name == artixConfig.repos.galaxy.arch[0] || name == artixConfig.repos.galaxy.arch[1] ) {
-//             repo = artixConfig.repos.galaxy.name
-//         } else if ( name == artixConfig.repos.lib32Goblins.arch[0] ) {
-//             repo = artixConfig.repos.lib32Goblins.name
-//         } else if ( name == artixConfig.repos.lib32Gremlins.arch[0] ) {
-//             repo = artixConfig.repos.lib32Gremlins.name
-//         } else if ( name == artixConfig.repos.lib32.arch[0] ) {
-//             repo = artixConfig.repos.lib32.name
-//         } else if ( name == artixConfig.repos.kdeWobble.arch[0] || name == artixConfig.repos.kdeWobble.arch[1] ) {
-//             repo = artixConfig.repos.kdeWobble.name
-//         } else if ( name == artixConfig.repos.gnomeWobble.arch[0] || name == artixConfig.repos.gnomeWobble.arch[1] ) {
-//             repo = artixConfig.repos.gnomeWobble.name
-//         }
-//         return repo
         String repo = ''
         for ( int i = 0; i < artixConfig.repos.size(); i++ ) {
             if ( artixConfig.repos[i].arch.size() == 2 ) {
                 if ( name == artixConfig.repos[i].arch[0] || name == artixConfig.repos[i].arch[1] ) {
                     repo = artixConfig.repos[i].name
+                    break
                 }
             } else {
                 if ( name == artixConfig.repos[i].arch[0] ) {
                     repo = artixConfig.repos[i].name
+                    break
                 }
             }
         }

@@ -1,42 +1,30 @@
 ---
 
 repos:
-    goblins:
-        name: 'goblins'
-        arch: ['staging-x86_64', 'staging-any']
-    gremlins:
-        name: 'gremlins'
-        arch: ['testing-x86_64', 'testing-any']
-    system:
-        name: 'system'
-        arch: ['core-x86_64', 'core-any']
-    world:
-        name: 'world'
-        arch: ['extra-x86_64', 'extra-any']
-    galaxy-goblins:
-        name: 'galaxy-goblins'
-        arch: ['community-staging-x86_64', 'community-staging-any']
-    galaxy-gremlins:
-        name: 'galaxy-gremlins'
-        arch: ['community-testing-x86_64', 'community-testing-any']
-    galaxy:
-        name: 'galaxy'
-        arch: ['community-x86_64', 'community-any']
-    lib32-goblins:
-        name: 'lib32-goblins'
-        arch: ['multilib-staging-x86_64']
-    lib32-gremlins:
-        name: 'lib32-gremlins'
-        arch: ['multilib-testing-x86_64']
-    lib32:
-        name: 'lib32'
-        arch: ['multilib-x86_64']
-    kde-wobble:
-        name: 'kde-wobble'
-        arch: ['kde-unstable-x86_64', 'kde-unstable-any']
-    gnome-wobble:
-        name: 'gnome-wobble'
-        arch: ['gnome-unstable-x86_64', 'gnome-unstable-any']
+  - name: 'goblins'
+    arch: ['staging-x86_64', 'staging-any']
+  - name: 'gremlins'
+    arch: ['testing-x86_64', 'testing-any']
+  - name: 'system'
+    arch: ['core-x86_64', 'core-any']
+  - name: 'world'
+    arch: ['extra-x86_64', 'extra-any']
+  - name: 'galaxy-goblins'
+    arch: ['community-staging-x86_64', 'community-staging-any']
+  - name: 'galaxy-gremlins'
+    arch: ['community-testing-x86_64', 'community-testing-any']
+  - name: 'galaxy'
+    arch: ['community-x86_64', 'community-any']
+  - name: 'lib32-goblins'
+    arch: ['multilib-staging-x86_64']
+  - name: 'lib32-gremlins'
+    arch: ['multilib-testing-x86_64']
+  - name: 'lib32'
+    arch: ['multilib-x86_64']
+  - name: 'kde-wobble'
+    arch: ['kde-unstable-x86_64', 'kde-unstable-any']
+  - name: 'gnome-wobble'
+    arch: ['gnome-unstable-x86_64', 'gnome-unstable-any']
 
 tools:
     buildCmd: 'buildpkg -C'

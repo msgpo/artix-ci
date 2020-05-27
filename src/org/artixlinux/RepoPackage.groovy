@@ -15,8 +15,6 @@ class RepoPackage implements Serializable {
 
     private Map authorInfo = [:]
 
-    private Map jobInfo = [:]
-
     private List<String> repoListGit = []
 
     def getArtixConfig() {
@@ -29,10 +27,6 @@ class RepoPackage implements Serializable {
 
     def getAuthorInfo() {
         authorInfo
-    }
-
-    def getJobInfo() {
-        jobInfo
     }
 
     private String mapRepo(String name) {
@@ -156,12 +150,8 @@ class RepoPackage implements Serializable {
     }
 
     private void loadPkgYaml() {
-
         String pkgYaml = steps.sh(returnStdout: true, script: "${artixConfig.tools.yamlCmd} ${artixConfig.tools.repoPathGit}")
-
         pkgInfo = steps.readYaml(text: pkgYaml)
-
-        jobInfo << [name: "${artixConfig.tools.repoName}", desc: "${pkgInfo.pkgbase.pkgname}-${pkgInfo.pkgbase.fullver}"]
     }
 
     void initialize() {

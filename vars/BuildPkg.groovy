@@ -3,7 +3,7 @@
 def call(def pkg){
     pkg.artixConfig.tools.buildCmd += " -d ${pkg.artixConfig.tools.repoAddName}"
     Boolean isLibBump = false
-    if ( pkg.jobInfo.name == 'goblins' ) {
+    if ( pkg.artixConfig.tools.repoName == 'goblins' ) {
         isLibBump = input message: "Is this the first of a major staging rebuild?",
         parameters: [booleanParam(name: 'isLibBump', defaultValue: false, description: 'Select')]
     }

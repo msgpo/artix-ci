@@ -13,7 +13,8 @@ def call(def pkg){
     }
     dir(pkg.artixConfig.tools.repoPathGit) {
         catchError(message: "FAILURE", buildResult: 'FAILURE', stageResult: 'FAILURE') {
-            sh "${pkg.artixConfig.tools.buildCmd}"
+//             sh "${pkg.artixConfig.tools.buildCmd}"
+            echo "${pkg.artixConfig.tools.buildCmd}"
         }
     }
 }

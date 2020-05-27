@@ -13,10 +13,10 @@ def call(def pkg){
     }
     dir(pkg.artixConfig.tools.repoPathGit) {
         catchError(message: "FAILURE", buildResult: 'FAILURE', stageResult: 'FAILURE') {
-            if ( ! params.isDryRun ) {
-                sh "${pkg.artixConfig.tools.buildCmd}"
-            } else {
+            if ( params.isDryRun ) {
                 echo "${pkg.artixConfig.tools.buildCmd}"
+            } else {
+                sh "${pkg.artixConfig.tools.buildCmd}"
             }
         }
     }

@@ -59,7 +59,7 @@ class RepoPackage implements Serializable {
 //         return repo
         String repo = ''
         for ( int i = 0; i < artixConfig.repos.size(); i++ ) {
-            if ( artixConfig.repos[i].arch.size() = 2 ) {
+            if ( artixConfig.repos[i].arch.size() == 2 ) {
                 if ( name == artixConfig.repos[i].arch[0] || name == artixConfig.repos[i].arch[1] ) {
                     repo = artixConfig.repos[i].name
                 }

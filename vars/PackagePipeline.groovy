@@ -7,6 +7,9 @@ def call(def pkg) {
             skipDefaultCheckout()
             timestamps()
         }
+        parameters {
+            booleanParam(name: 'isDryRun', defaultValue: true, description: 'Disable build and deploy commands?')
+        }
         stages {
             stage('Prepare') {
                 steps {

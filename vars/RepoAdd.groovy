@@ -3,7 +3,10 @@
 def call(def pkg) {
     pkg.artixConfig.tools.repoAddCmd += " -d ${pkg.artixConfig.tools.repoAddName}"
     catchError(message: "Errors occurred.", buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
-//         sh "${pkg.artixConfig.tools.repoAddCmd} ${pkg.pkgInfo.pkgfile.join(' ')}"
-        echo "${pkg.artixConfig.tools.repoAddCmd} ${pkg.pkgInfo.pkgfile.join(' ')}"
+        if ( ! params.isDryRun ) {
+            sh "${pkg.artixConfig.tools.repoAddCmd} ${pkg.pkgInfo.pkgfile.join(' ')}"
+        } else {
+            echo "${pkg.artixConfig.tools.repoAddCmd} ${pkg.pkgInfo.pkgfile.join(' ')}"
+        }
     }
 }

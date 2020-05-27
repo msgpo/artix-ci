@@ -14,10 +14,10 @@ def call(def pkg) {
 
     String body = "${bodyRepo}${bodyAction}${bodyInfo}${bodyAuthor}${bodyUrl}"
 
-//     emailext (
-//         body: body,
-//         subject: subject,
-//         to: sendTo,
-//         attachLog: true
-//     )
+    emailext (
+        body: body,
+        subject: subject,
+        to: sendTo,
+        attachLog: true
+    )
 }

@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 
 def call(def pkg) {
-    echo "${pkg.artixConfig.tools.signCmd} ${pkg.pkgInfo.pkgfile.join(' ')}"
+    sh "${pkg.artixConfig.tools.signCmd} ${pkg.pkgInfo.pkgfile.join(' ')}"
 
     pkg.artixConfig.actions.isAdd = true
 
